@@ -12,8 +12,11 @@ PictureBeaver 1.0.1
 	</runtime>
 <script language="JScript"><![CDATA[
 
+// -i0: non-interlaced
+// -nc: do not apply color type reduction
+// -nb: do not apply bit depth reduction
 var PNG_OPTIMIZER_FILE		= 'optipng.exe';
-var PNG_OPTIMIZER_PARAMS	= '-o7 -i0 -q'; // -i0 ?
+var PNG_OPTIMIZER_PARAMS	= '-o7 -i0 -nc -nb -q';
 var GIF_OPTIMIZER_FILE		= 'gifsicle.exe';
 var GIF_OPTIMIZER_PARAMS	= '-O2 -o';
 var JPEG_OPTIMIZER_FILE		= 'jpegtran.exe';

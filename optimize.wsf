@@ -1,14 +1,14 @@
 <?XML version="1.0"?>
 <!--
-PictureBeaver 1.0.2
-Пакетная оптимизация изображений PNG, JPEG и GIF
+PictureBeaver 1.0.3
+Automatic web graphics optimizer: PNG, JPEG и GIF
 
 (C) 2009 Artem Sapegin (sapegin.ru)
 -->
 <job>
 	<runtime>
-		<description>PictureBeaver 1.0.2
-Пакетная оптимизация изображений PNG, JPEG и GIF</description>
+		<description>PictureBeaver 1.0.3
+Automatic web graphics optimizer: PNG, JPEG и GIF</description>
 	</runtime>
 <script language="JScript"><![CDATA[
 
@@ -46,7 +46,7 @@ function processFile(filePath) {
 		case 'png':
 		case 'gif':
 			if (('gif' == extension) && isGifAnimated(filePath)) {
-				// src и dst поменяны местами, чтобы dst подставлялся в параметр -o
+				// Change src and dst with each other so dst could be placed in -o switch
 				exec(GIF_OPTIMIZER_FILE, GIF_OPTIMIZER_PARAMS, copyPath, filePath);
 				
 				checkResult(filePath, copyPath);
@@ -110,7 +110,7 @@ function checkResult(srcPath, dstPath) {
 	}
 	catch (e) {
 		src.Copy(fso.GetParentFolderName(src) + '/' + RESULTS_FOLDER + '/' + srcName);
-		reportError('Не удалось оптимизировать файл' + srcName + '.');
+		reportError('Cannot optimize file ' + srcName + '.');
 		return false;
 	}
 	
@@ -129,7 +129,7 @@ function checkResult(srcPath, dstPath) {
 		result.bytes = 0;
 		result.percents = 0;
 		
-		// копируем старый файл на место нового		
+		// Replace old file with optimized version
 		dst.Delete();
 		src.Copy(fso.GetParentFolderName(src) + '/' + RESULTS_FOLDER + '/' + srcName);
 	}
@@ -146,11 +146,10 @@ function saveResults() {
 	var totalAfter = 0;
 	
 	var html = [
-		'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">',
-		'<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">',
+		'<!doctype html>',
+		'<html lang="en-US">',
 			'<head>',
-				'<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />',
-				'<title>Результаты оптимизации</title>',
+				'<title>Optimization statistics</title>',
 				'<style type="text/css">',
 					'html { font-size: 100%; }',
 					'body { font-family: Calibri, Tahoma, Geneva, sans-serif; }',
@@ -164,10 +163,10 @@ function saveResults() {
 				'</style>',
 			'</head>',
 			'<body>',
-				'<h1>Вы экономите {%TOTAL_PERCENTS%}% ({%TOTAL_BYTES%} КБ)</h1>',
+				'<h1>You save {%TOTAL_PERCENTS%}% ({%TOTAL_BYTES%} KB)</h1>',
 				'<table>',
 					'<thead>',
-						'<tr><th>Файл</th><th>Было, КБ</th><th>Стало, КБ</th><th>Экономия, КБ</th><th>Экономия</th></tr>',
+						'<tr><th>File</th><th>Before, KB</th><th>After, KB</th><th>Saved, KB</th><th>Saved</th></tr>',
 					'</thead>',
 					'<tbody>',
 	];
@@ -196,7 +195,7 @@ function saveResults() {
 		'</tbody>',
 		'<tfoot>',
 			'<tr>',
-				'<th>Итого</th>',
+				'<th>Total</th>',
 				'<td align="right">', formatSize(totalBefore), '</td>',
 				'<td align="right">', formatSize(totalAfter), '</td>',
 				'<td align="right">', formatSize(totalBytes), '</td>',
@@ -226,9 +225,9 @@ function saveResults() {
 }
 
 function formatSize(size) {
-	var str = (Math.round((size*100)/1024)/100).toString().replace('.', ',');
+	var str = (Math.round((size*100)/1024)/100).toString()
 	
-	if (',' == str.charAt(str.length - 2)) {
+	if ('.' == str.charAt(str.length - 2)) {
 		str += '0';
 	}
 	
@@ -246,7 +245,7 @@ function createFolder(path)
 			fso.CreateFolder(path);
 		}
 		catch(e) {
-			reportError('Не удаётся создать папку для оптимизированных файлов.');
+			reportError('Cannot create folder for optimized files.');
 		}
 	}
 }
@@ -326,12 +325,12 @@ if (0 == arguments.length) {
 
 	WScript.Echo(
 		'PictureBeaver\n' +
-		'Пакетная оптимизация изображений PNG, JPEG и GIF\n\n' +
+		'Automatic web graphics optimizer: PNG, JPEG и GIF\n\n' +
 		( isGui
-			? ( 'Просто перетащите файлы и/или папки на файл ' + fso.GetFileName(WScript.ScriptFullName) + '.\n\n' )
-			: ( 'Использование:\n' + '    ' + fso.GetFileName(WScript.ScriptFullName) + ' <папка или файлы>\n\n' )
+			? ( 'Drag and drop files over ' + fso.GetFileName(WScript.ScriptFullName) + '.\n\n' )
+			: ( 'Usage:\n' + '    ' + fso.GetFileName(WScript.ScriptFullName) + ' <file or folder>\n\n' )
 		) +
-		'Результаты будут в папке (папках) ' + RESULTS_FOLDER + ', отчёт в файле ' + REPORT_FILE + '.'
+		'Optimized files will be in folder ' + RESULTS_FOLDER + ', statistics in ' + REPORT_FILE + '.'
 	);
 }
 

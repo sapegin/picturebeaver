@@ -1,13 +1,13 @@
 <?XML version="1.0"?>
 <!--
-PictureBeaver 1.0.1
+PictureBeaver 1.0.2
 Пакетная оптимизация изображений PNG, JPEG и GIF
 
 (C) 2009 Artem Sapegin (sapegin.ru)
 -->
 <job>
 	<runtime>
-		<description>PictureBeaver 1.0.1
+		<description>PictureBeaver 1.0.2
 Пакетная оптимизация изображений PNG, JPEG и GIF</description>
 	</runtime>
 <script language="JScript"><![CDATA[

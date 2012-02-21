@@ -1,0 +1,8 @@
+gifsicle 1.60
+http://www.lcdf.org/gifsicle/
+
+jpegtran 8d  15-Jan-2012
+http://jpegclub.org/jpegtran/
+
+optipng 0.6.5
+http://optipng.sourceforge.net/

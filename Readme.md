@@ -4,6 +4,8 @@ Automatic web graphics optimizer for Windows: PNG, JPEG и GIF.
 
 Removes unnecessary information from graphic files. Less size without data loss. Uses free command line tools: `optipng`, `jpegtran` and `gifsicle`.
 
+![PictureBeaver](http://wow.sapegin.me/image/440D2y3F1E2P/Image%202015-07-10%20at%2010.37.06%20PM.png)
+
 
 ## Using from Windows Explorer
 

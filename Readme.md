@@ -1,5 +1,7 @@
 # PictureBeaver
 
+[![Powered by You](http://sapegin.github.io/powered-by-you/badge.svg)](http://sapegin.github.io/powered-by-you/)
+
 Automatic web graphics optimizer for Windows: PNG, JPEG и GIF.
 
 Removes unnecessary information from graphic files. Less size without data loss. Uses free command line tools: `optipng`, `jpegtran` and `gifsicle`.

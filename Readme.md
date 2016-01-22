@@ -1,6 +1,6 @@
 # PictureBeaver
 
-[![Powered by You](http://sapegin.github.io/powered-by-you/badge.svg)](http://sapegin.github.io/powered-by-you/)
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 Automatic web graphics optimizer for Windows: PNG, JPEG и GIF.
 
